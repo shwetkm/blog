@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Title | fastpages</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Title" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="summary" />
+<meta property="og:description" content="summary" />
+<link rel="canonical" href="https://shwetkm.github.io/blog/2020/01/28/Interactive-Bubble-Plot.html" />
+<meta property="og:url" content="https://shwetkm.github.io/blog/2020/01/28/Interactive-Bubble-Plot.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-28T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2020-01-28T00:00:00-06:00","dateModified":"2020-01-28T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://shwetkm.github.io/blog/2020/01/28/Interactive-Bubble-Plot.html"},"description":"summary","@type":"BlogPosting","url":"https://shwetkm.github.io/blog/2020/01/28/Interactive-Bubble-Plot.html","headline":"Title","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://shwetkm.github.io/blog/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Title | fastpages</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Title" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="summary" />
+<meta property="og:description" content="summary" />
+<link rel="canonical" href="https://shwetkm.github.io/blog/2020/01/28/Interactive-Bubble-Plot.html" />
+<meta property="og:url" content="https://shwetkm.github.io/blog/2020/01/28/Interactive-Bubble-Plot.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-28T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2020-01-28T00:00:00-06:00","dateModified":"2020-01-28T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://shwetkm.github.io/blog/2020/01/28/Interactive-Bubble-Plot.html"},"description":"summary","@type":"BlogPosting","url":"https://shwetkm.github.io/blog/2020/01/28/Interactive-Bubble-Plot.html","headline":"Title","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://shwetkm.github.io/blog/feed.xml" title="fastpages" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">fastpages</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Title</h1><p class="page-description">summary</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-01-28T00:00:00-06:00" itemprop="datePublished">
+        Jan 28, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/shwetkm/blog/tree/master/_notebooks/2020-01-28-Interactive Bubble Plot.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/shwetkm/blog/master?filepath=_notebooks%2F2020-01-28-Interactive+Bubble+Plot.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/shwetkm/blog/blob/master/_notebooks/2020-01-28-Interactive Bubble Plot.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-01-28-Interactive Bubble Plot.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">push_notebook</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_notebook</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+<span class="n">output_notebook</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+    <div class="bk-root">
+        <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
+        <span id="1001">Loading BokehJS ...</span>
+    </div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+
+<div id="1ec42a8f-cc01-4b52-80a3-67821622efbc"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#1ec42a8f-cc01-4b52-80a3-67821622efbc');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof (root._bokeh_onload_callbacks) === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  var JS_MIME_TYPE = 'application/javascript';
+  var HTML_MIME_TYPE = 'text/html';
+  var EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
+  var CLASS_NAME = 'output_bokeh rendered_html';
+
+  /**
+   * Render data to the DOM node
+   */
+  function render(props, node) {
+    var script = document.createElement("script");
+    node.appendChild(script);
+  }
+
+  /**
+   * Handle when an output is cleared or removed
+   */
+  function handleClearOutput(event, handle) {
+    var cell = handle.cell;
+
+    var id = cell.output_area._bokeh_element_id;
+    var server_id = cell.output_area._bokeh_server_id;
+    // Clean up Bokeh references
+    if (id != null && id in Bokeh.index) {
+      Bokeh.index[id].model.document.clear();
+      delete Bokeh.index[id];
+    }
+
+    if (server_id !== undefined) {
+      // Clean up Bokeh references
+      var cmd = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
+      cell.notebook.kernel.execute(cmd, {
+        iopub: {
+          output: function(msg) {
+            var id = msg.content.text.trim();
+            if (id in Bokeh.index) {
+              Bokeh.index[id].model.document.clear();
+              delete Bokeh.index[id];
+            }
+          }
+        }
+      });
+      // Destroy server and session
+      var cmd = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
+      cell.notebook.kernel.execute(cmd);
+    }
+  }
+
+  /**
+   * Handle when a new output is added
+   */
+  function handleAddOutput(event, handle) {
+    var output_area = handle.output_area;
+    var output = handle.output;
+
+    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
+    if ((output.output_type != "display_data") || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+      return
+    }
+
+    var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+
+    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
+      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
+      // store reference to embed id on output_area
+      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
+    }
+    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+      var bk_div = document.createElement("div");
+      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+      var script_attrs = bk_div.children[0].attributes;
+      for (var i = 0; i < script_attrs.length; i++) {
+        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
+      }
+      // store reference to server id on output_area
+      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+    }
+  }
+
+  function register_renderer(events, OutputArea) {
+
+    function append_mime(data, metadata, element) {
+      // create a DOM node to render to
+      var toinsert = this.create_output_subarea(
+        metadata,
+        CLASS_NAME,
+        EXEC_MIME_TYPE
+      );
+      this.keyboard_manager.register_events(toinsert);
+      // Render to node
+      var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+      render(props, toinsert[toinsert.length - 1]);
+      element.append(toinsert);
+      return toinsert
+    }
+
+    /* Handle when an output is cleared or removed */
+    events.on('clear_output.CodeCell', handleClearOutput);
+    events.on('delete.Cell', handleClearOutput);
+
+    /* Handle when a new output is added */
+    events.on('output_added.OutputArea', handleAddOutput);
+
+    /**
+     * Register the mime type and append_mime function with output_area
+     */
+    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+      /* Is output safe? */
+      safe: true,
+      /* Index of renderer in `output_area.display_order` */
+      index: 0
+    });
+  }
+
+  // register the mime type if in Jupyter Notebook environment and previously unregistered
+  if (root.Jupyter !== undefined) {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  }
+
+  
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  var NB_LOAD_WARNING = {'data': {'text/html':
+     "<div style='background-color: #fdd'>\n"+
+     "<p>\n"+
+     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+     "may be due to a slow or bad network connection. Possible fixes:\n"+
+     "</p>\n"+
+     "<ul>\n"+
+     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+     "<li>use INLINE resources instead, as so:</li>\n"+
+     "</ul>\n"+
+     "<code>\n"+
+     "from bokeh.resources import INLINE\n"+
+     "output_notebook(resources=INLINE)\n"+
+     "</code>\n"+
+     "</div>"}};
+
+  function display_loaded() {
+    var el = document.getElementById("1001");
+    if (el != null) {
+      el.textContent = "BokehJS is loading...";
+    }
+    if (root.Bokeh !== undefined) {
+      if (el != null) {
+        el.textContent = "BokehJS " + root.Bokeh.version + " successfully loaded.";
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(display_loaded, 100)
+    }
+  }
+
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) { callback() });
+    }
+    finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.info("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(js_urls, callback) {
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.log("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.log("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = js_urls.length;
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      var s = document.createElement('script');
+      s.src = url;
+      s.async = false;
+      s.onreadystatechange = s.onload = function() {
+        root._bokeh_is_loading--;
+        if (root._bokeh_is_loading === 0) {
+          console.log("Bokeh: all BokehJS libraries loaded");
+          run_callbacks()
+        }
+      };
+      s.onerror = function() {
+        console.warn("failed to load library " + url);
+      };
+      console.log("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.getElementsByTagName("head")[0].appendChild(s);
+    }
+  };var element = document.getElementById("1001");
+  if (element == null) {
+    console.log("Bokeh: ERROR: autoload.js configured with elementid '1001' but no matching script tag was found. ")
+    return false;
+  }
+
+  var js_urls = ["https://cdn.pydata.org/bokeh/release/bokeh-1.0.2.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.2.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-tables-1.0.2.min.js", "https://cdn.pydata.org/bokeh/release/bokeh-gl-1.0.2.min.js"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    
+    function(Bokeh) {
+      
+    },
+    function(Bokeh) {
+      console.log("Bokeh: injecting CSS: https://cdn.pydata.org/bokeh/release/bokeh-1.0.2.min.css");
+      Bokeh.embed.inject_css("https://cdn.pydata.org/bokeh/release/bokeh-1.0.2.min.css");
+      console.log("Bokeh: injecting CSS: https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.2.min.css");
+      Bokeh.embed.inject_css("https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.2.min.css");
+      console.log("Bokeh: injecting CSS: https://cdn.pydata.org/bokeh/release/bokeh-tables-1.0.2.min.css");
+      Bokeh.embed.inject_css("https://cdn.pydata.org/bokeh/release/bokeh-tables-1.0.2.min.css");
+    }
+  ];
+
+  function run_inline_js() {
+    
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }if (force === true) {
+        display_loaded();
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    } else if (force !== true) {
+      var cell = $(document.getElementById("1001")).parents('.cell').data().cell;
+      cell.output_area.append_execute_result(NB_LOAD_WARNING)
+    }
+
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.log("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(js_urls, function() {
+      console.log("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#your_local_path=&quot;F:/Study/Dashboard/Coffee/&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Cafe.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">coffee</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+        
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># coffee = pd.read_json(&#39;Cafe1.json&#39;)</span>
+<span class="c1">#coffee = coffee.sample(n=1000)</span>
+<span class="c1">#coffee.reset_index(drop=True)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stdf</span> <span class="o">=</span> <span class="n">coffee</span><span class="p">[</span><span class="s1">&#39;Monthly Data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+<span class="n">stdf</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#stdf.head()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2013:10</th>
+      <th>2013:11</th>
+      <th>2013:12</th>
+      <th>2013:9</th>
+      <th>2014:1</th>
+      <th>2014:10</th>
+      <th>2014:11</th>
+      <th>2014:12</th>
+      <th>2014:2</th>
+      <th>2014:3</th>
+      <th>...</th>
+      <th>2016:8</th>
+      <th>2016:9</th>
+      <th>2017:1</th>
+      <th>2017:2</th>
+      <th>2017:3</th>
+      <th>2017:4</th>
+      <th>2017:5</th>
+      <th>2017:6</th>
+      <th>2017:7</th>
+      <th>2017:8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>{'NoOfEmployees': 12.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 13.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 14.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 11.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 15.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 31.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 32.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 34.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 16.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 17.0, 'CostIncurredAtStore':...</td>
+      <td>...</td>
+      <td>{'NoOfEmployees': 114.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 122.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 146.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 157.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 170.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 176.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 190.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 206.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 215.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 222.0, 'CostIncurredAtStore'...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>{'NoOfEmployees': 12.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 13.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 14.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 11.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 15.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 30.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 31.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 34.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 17.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 18.0, 'CostIncurredAtStore':...</td>
+      <td>...</td>
+      <td>{'NoOfEmployees': 147.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 160.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 212.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 223.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 239.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 257.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 268.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 293.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 304.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 317.0, 'CostIncurredAtStore'...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>{'NoOfEmployees': 12.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 13.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 14.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 11.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 15.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 28.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 30.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 32.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 16.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 17.0, 'CostIncurredAtStore':...</td>
+      <td>...</td>
+      <td>{'NoOfEmployees': 94.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 103.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 135.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 148.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 157.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 166.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 179.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 193.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 204.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 223.0, 'CostIncurredAtStore'...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>{'NoOfEmployees': 11.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 24.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 26.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 27.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 12.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 13.0, 'CostIncurredAtStore':...</td>
+      <td>...</td>
+      <td>{'NoOfEmployees': 92.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 100.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 116.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 121.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 123.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 134.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 142.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 151.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 155.0, 'CostIncurredAtStore'...</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>{'NoOfEmployees': 18.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 19.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 21.0, 'CostIncurredAtStore':...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>{'NoOfEmployees': 72.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 80.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 109.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 117.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 125.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 136.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 149.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 160.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 163.0, 'CostIncurredAtStore'...</td>
+      <td>{'NoOfEmployees': 174.0, 'CostIncurredAtStore'...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>{'NoOfEmployees': 11.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 12.0, 'CostIncurredAtStore':...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>{'NoOfEmployees': 49.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 53.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 62.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 67.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 74.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 77.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 83.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 90.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 97.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 99.0, 'CostIncurredAtStore':...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>{'NoOfEmployees': 34.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 36.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 49.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 52.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 55.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 59.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 60.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 61.0, 'CostIncurredAtStore':...</td>
+      <td>{'NoOfEmployees': 66.0, 'CostIncurredAtStore':...</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>7 rows × 48 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">coffee</span> <span class="o">=</span> <span class="n">coffee</span><span class="p">[[</span><span class="s1">&#39;Store ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Brand&#39;</span><span class="p">,</span> <span class="s1">&#39;Store Number&#39;</span><span class="p">,</span> <span class="s1">&#39;Phone Number&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Ownership Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Street Combined&#39;</span><span class="p">,</span> <span class="s1">&#39;Street 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Street 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Street 3&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;City&#39;</span><span class="p">,</span> <span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;Country&#39;</span><span class="p">,</span> <span class="s1">&#39;Coordinates&#39;</span><span class="p">,</span> <span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;Longitude&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Start Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Monthly Data&#39;</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#len(coffee.Country.unique())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stdf</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">stdf</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stdf</span><span class="p">[</span><span class="s1">&#39;City&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">coffee</span><span class="p">[</span><span class="s1">&#39;City&#39;</span><span class="p">]</span>
+<span class="n">stdf</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">coffee</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+<span class="n">stdf_city</span> <span class="o">=</span> <span class="n">stdf</span><span class="p">[</span><span class="n">stdf</span><span class="p">[</span><span class="s1">&#39;City&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Pune&#39;</span><span class="p">]</span>
+<span class="c1">#len(stdf_city[&#39;Name&#39;].unique())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#stdf_city[0].apply(pd.Series)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Cost-Incurred-vs-Revenue-Plot-for-stores-in-Pune">Cost Incurred vs Revenue Plot for stores in Pune<a class="anchor-link" href="#Cost-Incurred-vs-Revenue-Plot-for-stores-in-Pune"> </a></h1><h4 id="*Bubble-size-represents-Profits">*Bubble size represents Profits<a class="anchor-link" href="#*Bubble-size-represents-Profits"> </a></h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.palettes</span> <span class="kn">import</span> <span class="n">Spectral11</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">HoverTool</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">LinearInterpolator</span><span class="p">,</span> <span class="n">CategoricalColorMapper</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span>
+
+<span class="n">sss</span> <span class="o">=</span> <span class="n">stdf_city</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+<span class="n">Profit</span> <span class="o">=</span> <span class="n">sss</span><span class="p">[</span><span class="s1">&#39;Profit&#39;</span><span class="p">]</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span> <span class="n">sss</span><span class="p">[</span><span class="s1">&#39;CostIncurredAtStore&#39;</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span> <span class="n">sss</span><span class="p">[</span><span class="s1">&#39;RevenueOfStore&#39;</span><span class="p">],</span>
+    <span class="n">profit</span> <span class="o">=</span> <span class="n">sss</span><span class="p">[</span><span class="s1">&#39;Profit&#39;</span><span class="p">],</span>
+    <span class="n">profit_scaled</span> <span class="o">=</span> <span class="n">Profit</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mi">5</span><span class="p">)),</span>
+    <span class="n">stores</span> <span class="o">=</span> <span class="n">stdf_city</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">],</span>    
+    <span class="n">emp</span> <span class="o">=</span> <span class="n">sss</span><span class="p">[</span><span class="s1">&#39;NoOfEmployees&#39;</span><span class="p">],</span>
+        
+    <span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">update_m</span> <span class="p">(</span><span class="n">month</span><span class="p">):</span>
+    <span class="n">sss</span> <span class="o">=</span> <span class="n">stdf_city</span><span class="p">[</span><span class="n">month</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+    <span class="n">Profit</span> <span class="o">=</span> <span class="n">sss</span><span class="p">[</span><span class="s1">&#39;Profit&#39;</span><span class="p">]</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span> <span class="n">sss</span><span class="p">[</span><span class="s1">&#39;CostIncurredAtStore&#39;</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span> <span class="n">sss</span><span class="p">[</span><span class="s1">&#39;RevenueOfStore&#39;</span><span class="p">],</span>
+        <span class="n">stores</span> <span class="o">=</span> <span class="n">stdf_city</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">],</span>    
+        <span class="n">emp</span> <span class="o">=</span> <span class="n">sss</span><span class="p">[</span><span class="s1">&#39;NoOfEmployees&#39;</span><span class="p">],</span>
+        <span class="n">profit</span> <span class="o">=</span> <span class="n">Profit</span><span class="p">,</span>
+        <span class="n">profit_scaled</span> <span class="o">=</span> <span class="n">Profit</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mi">5</span><span class="p">))</span>
+        
+    <span class="p">)</span>
+    <span class="n">source</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">new_data</span> <span class="c1">#updating the source data with the newdata i.e data of each year</span>
+    <span class="n">p1</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>  <span class="c1">#updating the title </span>
+    <span class="n">push_notebook</span><span class="p">()</span> <span class="c1">#push this into chart</span>
+
+<span class="n">size_mapper</span> <span class="o">=</span> <span class="n">LinearInterpolator</span><span class="p">(</span>     <span class="c1">#this is to give size for each data point according to their population</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1">#to give color to each type of data point</span>
+<span class="n">color_mapper</span> <span class="o">=</span> <span class="n">CategoricalColorMapper</span><span class="p">(</span>
+   <span class="n">factors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">stdf_city</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span>  <span class="c1">#this tells the compiler to color the continents</span>
+  <span class="n">palette</span> <span class="o">=</span> <span class="n">Spectral11</span><span class="p">,)</span>
+
+<span class="n">hover</span> <span class="o">=</span> <span class="n">HoverTool</span><span class="p">(</span><span class="n">tooltips</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Employee Count&quot;</span><span class="p">,</span><span class="s2">&quot;@emp&quot;</span><span class="p">),(</span><span class="s2">&quot;Profit&quot;</span><span class="p">,</span><span class="s2">&quot;@profit&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Revenue&quot;</span><span class="p">,</span><span class="s2">&quot;@y&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Cost Incurred&quot;</span><span class="p">,</span><span class="s2">&quot;@x&quot;</span><span class="p">)],</span> <span class="c1">#when u hover mouse on data points</span>
+                  <span class="n">show_arrow</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+
+<span class="n">PLOT_OPTS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>     <span class="c1">#the dimensions of figure is given</span>
+    <span class="n">height</span> <span class="o">=</span><span class="mi">450</span><span class="p">,</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">750</span><span class="p">,</span>
+    <span class="n">x_axis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>
+    <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="mi">1300</span><span class="p">,</span> <span class="mi">30000</span><span class="p">],</span>
+    <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span><span class="mi">30000</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span> <span class="c1">#how do u want the overall dimensions of fig</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;2013 October Cost Incurred vs Revenue&#39;</span><span class="p">),</span><span class="n">toolbar_location</span><span class="o">=</span><span class="s1">&#39;above&#39;</span><span class="p">,</span>  <span class="c1">#title should always be in string format</span>
+    <span class="n">title_location</span> <span class="o">=</span> <span class="s1">&#39;above&#39;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">hover</span><span class="p">],</span>
+    <span class="o">**</span><span class="n">PLOT_OPTS</span><span class="p">)</span>
+
+
+<span class="n">p1</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="c1">#these have been wriiten before and is being called for the sake of hovering to work and is defined in update function</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;field&#39;</span><span class="p">:</span><span class="s1">&#39;profit_scaled&#39;</span><span class="p">},</span>  <span class="c1">#we cant use the size of data point as population as the china population is one billion and all the pixels gets filled and hence we use a mapper and give the rangee of X and y axis</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;field&#39;</span><span class="p">:</span><span class="s1">&#39;stores&#39;</span><span class="p">,</span><span class="s1">&#39;transform&#39;</span><span class="p">:</span><span class="n">color_mapper</span><span class="p">},</span> <span class="c1">#this will color all the regions defined by color_mapper</span>
+    <span class="n">legend</span><span class="o">=</span><span class="s1">&#39;stores&#39;</span><span class="p">,</span> <span class="c1">#a legend of which color is what continent</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>  <span class="c1">#what is the data source</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span> <span class="c1">#how much of transparency of data pojint</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">border_line_color</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#to remove the border</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">#this is going to take legend out of the chart box</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">legend</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#this is going to place the legend to the right</span>
+<span class="n">show</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">notebook_handle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#notebook_handle will take the consideration of viewing each year that we defined in update</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/shwet/anaconda3/lib/python3.6/site-packages/pandas/core/indexes/api.py:77: RuntimeWarning: &#39;&gt;&#39; not supported between instances of &#39;int&#39; and &#39;str&#39;, sort order is undefined for incomparable objects
+  result = result.union(other)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+
+    <div class="bk-root">
+        <div class="bk-plotdiv" id="7c4c38f8-5088-402f-bbc5-864e161d387c"></div>
+    </div>
+<script type="text/javascript">
+  
+  (function(global) {
+    function now() {
+      return new Date();
+    }
+  
+    var force = false;
+  
+    if (typeof (window._bokeh_onload_callbacks) === "undefined" || force === true) {
+      window._bokeh_onload_callbacks = [];
+      window._bokeh_is_loading = undefined;
+    }
+  
+  
+    
+    if (typeof (window._bokeh_timeout) === "undefined" || force === true) {
+      window._bokeh_timeout = Date.now() + 0;
+      window._bokeh_failed_load = false;
+    }
+  
+    var NB_LOAD_WARNING = {'data': {'text/html':
+       "<div style='background-color: #fdd'>\n"+
+       "<p>\n"+
+       "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+       "may be due to a slow or bad network connection. Possible fixes:\n"+
+       "</p>\n"+
+       "<ul>\n"+
+       "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+       "<li>use INLINE resources instead, as so:</li>\n"+
+       "</ul>\n"+
+       "<code>\n"+
+       "from bokeh.resources import INLINE\n"+
+       "output_notebook(resources=INLINE)\n"+
+       "</code>\n"+
+       "</div>"}};
+  
+    function display_loaded() {
+      if (window.Bokeh !== undefined) {
+        var el = document.getElementById("7c4c38f8-5088-402f-bbc5-864e161d387c");
+        el.textContent = "BokehJS " + Bokeh.version + " successfully loaded.";
+      } else if (Date.now() < window._bokeh_timeout) {
+        setTimeout(display_loaded, 100)
+      }
+    }if ((window.Jupyter !== undefined) && Jupyter.notebook.kernel) {
+      comm_manager = Jupyter.notebook.kernel.comm_manager
+      comm_manager.register_target("225f50ed-e844-4d10-882a-dbe3aa4ce14c", function () {});
+    }
+  
+    function run_callbacks() {
+      window._bokeh_onload_callbacks.forEach(function(callback) { callback() });
+      delete window._bokeh_onload_callbacks
+      console.info("Bokeh: all callbacks have finished");
+    }
+  
+    function load_libs(js_urls, callback) {
+      window._bokeh_onload_callbacks.push(callback);
+      if (window._bokeh_is_loading > 0) {
+        console.log("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+        return null;
+      }
+      if (js_urls == null || js_urls.length === 0) {
+        run_callbacks();
+        return null;
+      }
+      console.log("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+      window._bokeh_is_loading = js_urls.length;
+      for (var i = 0; i < js_urls.length; i++) {
+        var url = js_urls[i];
+        var s = document.createElement('script');
+        s.src = url;
+        s.async = false;
+        s.onreadystatechange = s.onload = function() {
+          window._bokeh_is_loading--;
+          if (window._bokeh_is_loading === 0) {
+            console.log("Bokeh: all BokehJS libraries loaded");
+            run_callbacks()
+          }
+        };
+        s.onerror = function() {
+          console.warn("failed to load library " + url);
+        };
+        console.log("Bokeh: injecting script tag for BokehJS library: ", url);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      }
+    };var element = document.getElementById("7c4c38f8-5088-402f-bbc5-864e161d387c");
+    if (element == null) {
+      console.log("Bokeh: ERROR: autoload.js configured with elementid '7c4c38f8-5088-402f-bbc5-864e161d387c' but no matching script tag was found. ")
+      return false;
+    }
+  
+    var js_urls = [];
+  
+    var inline_js = [
+      function(Bokeh) {
+        (function() {
+          var fn = function() {
+            var docs_json = {"38c84bc6-5008-4697-8014-6df20758ee83":{"roots":{"references":[{"attributes":{"fill_alpha":{"value":0.9},"fill_color":{"field":"stores","transform":{"id":"8b60a158-98dd-476a-8a9f-a30959d22ab4","type":"CategoricalColorMapper"}},"line_alpha":{"value":0.9},"line_color":{"field":"stores","transform":{"id":"8b60a158-98dd-476a-8a9f-a30959d22ab4","type":"CategoricalColorMapper"}},"size":{"field":"profit_scaled","units":"screen"},"x":{"field":"x"},"y":{"field":"y"}},"id":"2f1aa082-9319-4d59-afb0-ba6de0f39b74","type":"Circle"},{"attributes":{"callback":null,"column_names":["x","y","profit","profit_scaled","stores","emp"],"data":{"emp":{"__ndarray__":"AAAAAAAAKEAAAAAAAAAoQAAAAAAAAChAAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh/AAAAAAAA+H8=","dtype":"float64","shape":[7]},"profit":{"__ndarray__":"AAAAAACAWsAAAAAAAMBaQAAAAAAAgE7AAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh/AAAAAAAA+H8=","dtype":"float64","shape":[7]},"profit_scaled":{"__ndarray__":"MzMzMzMzNUBmZmZmZmY1QGZmZmZmZihAAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh/AAAAAAAA+H8=","dtype":"float64","shape":[7]},"stores":["Koregaon Park","Hadapsar","Viman Nagar","Aundh","Magarpatta","Kharadi","FC Road"],"x":{"__ndarray__":"AAAAAABAlUAAAAAAAFiWQAAAAAAAvJdAAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh/AAAAAAAA+H8=","dtype":"float64","shape":[7]},"y":{"__ndarray__":"AAAAAACYk0AAAAAAAASYQAAAAAAAyJZAAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh/AAAAAAAA+H8=","dtype":"float64","shape":[7]}}},"id":"555e4972-6e49-400e-be94-e61e053eef5a","type":"ColumnDataSource"},{"attributes":{},"id":"2b954216-3aca-47e3-a8c4-b608feab36ac","type":"BasicTickFormatter"},{"attributes":{"active_drag":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"id":"637b1b1e-7aef-4d8d-8090-bbfc882e2b44","type":"HoverTool"}]},"id":"46acf7b4-81db-44f2-8ac0-0c7dc731ea06","type":"Toolbar"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"field":"profit_scaled","units":"screen"},"x":{"field":"x"},"y":{"field":"y"}},"id":"2b60fa8b-1dfb-4adc-a9b7-78eac6699955","type":"Circle"},{"attributes":{},"id":"827b397b-07d2-46b5-8ef3-91dcbec70f88","type":"BasicTicker"},{"attributes":{},"id":"e41bbe89-dae9-4b39-a030-cfbf92255f78","type":"ToolEvents"},{"attributes":{"num_minor_ticks":10},"id":"f9eb03fc-c2b6-4dd7-a23e-ebbc8cab7b42","type":"LogTicker"},{"attributes":{"callback":null,"plot":{"id":"f42bde5f-5ff9-4392-9a38-f4f4d673d791","subtype":"Figure","type":"Plot"},"show_arrow":false,"tooltips":[["Employee Count","@emp"],["Profit","@profit"],["Revenue","@y"],["Cost Incurred","@x"]]},"id":"637b1b1e-7aef-4d8d-8090-bbfc882e2b44","type":"HoverTool"},{"attributes":{"below":[{"id":"9e683b67-5325-46fd-a22f-1522f9bd16de","type":"LogAxis"}],"left":[{"id":"282654c3-d001-4885-859c-ccceaf56b742","type":"LinearAxis"}],"plot_height":450,"plot_width":750,"renderers":[{"id":"9e683b67-5325-46fd-a22f-1522f9bd16de","type":"LogAxis"},{"id":"35d79011-04d4-4a1d-91a1-a81f6d609489","type":"Grid"},{"id":"282654c3-d001-4885-859c-ccceaf56b742","type":"LinearAxis"},{"id":"8173f045-e194-4202-94b5-dba90756d70f","type":"Grid"},{"id":"bd368138-d32d-40c0-bd50-5f1d32bf4a84","type":"Legend"},{"id":"ce8788e1-5f8e-4351-9749-ef0951ddf746","type":"GlyphRenderer"}],"right":[{"id":"bd368138-d32d-40c0-bd50-5f1d32bf4a84","type":"Legend"}],"title":{"id":"b4af669c-2d06-47bc-85d4-c34f33c14785","type":"Title"},"tool_events":{"id":"e41bbe89-dae9-4b39-a030-cfbf92255f78","type":"ToolEvents"},"toolbar":{"id":"46acf7b4-81db-44f2-8ac0-0c7dc731ea06","type":"Toolbar"},"toolbar_location":"above","x_mapper_type":"log","x_range":{"id":"377f2948-6ebd-4fdf-a14e-8c68ee91c03b","type":"Range1d"},"y_range":{"id":"ae3d0c77-3292-4e0c-bba3-1fa0da2533fb","type":"Range1d"}},"id":"f42bde5f-5ff9-4392-9a38-f4f4d673d791","subtype":"Figure","type":"Plot"},{"attributes":{"border_line_color":{"value":null},"items":[{"id":"35dda8c8-ef31-4fec-80ed-abdf91a16c9c","type":"LegendItem"}],"location":[10,0],"plot":{"id":"f42bde5f-5ff9-4392-9a38-f4f4d673d791","subtype":"Figure","type":"Plot"}},"id":"bd368138-d32d-40c0-bd50-5f1d32bf4a84","type":"Legend"},{"attributes":{"factors":["Koregaon Park","Hadapsar","Viman Nagar","Aundh","Magarpatta","Kharadi","FC Road"],"palette":["#5e4fa2","#3288bd","#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f","#9e0142"]},"id":"8b60a158-98dd-476a-8a9f-a30959d22ab4","type":"CategoricalColorMapper"},{"attributes":{"data_source":{"id":"555e4972-6e49-400e-be94-e61e053eef5a","type":"ColumnDataSource"},"glyph":{"id":"2f1aa082-9319-4d59-afb0-ba6de0f39b74","type":"Circle"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"2b60fa8b-1dfb-4adc-a9b7-78eac6699955","type":"Circle"},"selection_glyph":null},"id":"ce8788e1-5f8e-4351-9749-ef0951ddf746","type":"GlyphRenderer"},{"attributes":{"formatter":{"id":"110b7ece-feed-4635-b80e-102f96e78c84","type":"LogTickFormatter"},"plot":{"id":"f42bde5f-5ff9-4392-9a38-f4f4d673d791","subtype":"Figure","type":"Plot"},"ticker":{"id":"f9eb03fc-c2b6-4dd7-a23e-ebbc8cab7b42","type":"LogTicker"}},"id":"9e683b67-5325-46fd-a22f-1522f9bd16de","type":"LogAxis"},{"attributes":{"label":{"field":"stores"},"renderers":[{"id":"ce8788e1-5f8e-4351-9749-ef0951ddf746","type":"GlyphRenderer"}]},"id":"35dda8c8-ef31-4fec-80ed-abdf91a16c9c","type":"LegendItem"},{"attributes":{"dimension":1,"plot":{"id":"f42bde5f-5ff9-4392-9a38-f4f4d673d791","subtype":"Figure","type":"Plot"},"ticker":{"id":"827b397b-07d2-46b5-8ef3-91dcbec70f88","type":"BasicTicker"}},"id":"8173f045-e194-4202-94b5-dba90756d70f","type":"Grid"},{"attributes":{"formatter":{"id":"2b954216-3aca-47e3-a8c4-b608feab36ac","type":"BasicTickFormatter"},"plot":{"id":"f42bde5f-5ff9-4392-9a38-f4f4d673d791","subtype":"Figure","type":"Plot"},"ticker":{"id":"827b397b-07d2-46b5-8ef3-91dcbec70f88","type":"BasicTicker"}},"id":"282654c3-d001-4885-859c-ccceaf56b742","type":"LinearAxis"},{"attributes":{"plot":{"id":"f42bde5f-5ff9-4392-9a38-f4f4d673d791","subtype":"Figure","type":"Plot"},"ticker":{"id":"f9eb03fc-c2b6-4dd7-a23e-ebbc8cab7b42","type":"LogTicker"}},"id":"35d79011-04d4-4a1d-91a1-a81f6d609489","type":"Grid"},{"attributes":{"plot":null,"text":"2013 October Cost Incurred vs Revenue"},"id":"b4af669c-2d06-47bc-85d4-c34f33c14785","type":"Title"},{"attributes":{"callback":null,"end":30000,"start":1500},"id":"ae3d0c77-3292-4e0c-bba3-1fa0da2533fb","type":"Range1d"},{"attributes":{"callback":null,"end":30000,"start":1300},"id":"377f2948-6ebd-4fdf-a14e-8c68ee91c03b","type":"Range1d"},{"attributes":{"ticker":null},"id":"110b7ece-feed-4635-b80e-102f96e78c84","type":"LogTickFormatter"}],"root_ids":["f42bde5f-5ff9-4392-9a38-f4f4d673d791"]},"title":"Bokeh Application","version":"0.12.5"}};
+            var render_items = [{"docid":"38c84bc6-5008-4697-8014-6df20758ee83","elementid":"7c4c38f8-5088-402f-bbc5-864e161d387c","modelid":"f42bde5f-5ff9-4392-9a38-f4f4d673d791","notebook_comms_target":"225f50ed-e844-4d10-882a-dbe3aa4ce14c"}];
+            
+            Bokeh.embed.embed_items(docs_json, render_items);
+          };
+          if (document.readyState != "loading") fn();
+          else document.addEventListener("DOMContentLoaded", fn);
+        })();
+      },
+      function(Bokeh) {
+      }
+    ];
+  
+    function run_inline_js() {
+      
+      if ((window.Bokeh !== undefined) || (force === true)) {
+        for (var i = 0; i < inline_js.length; i++) {
+          inline_js[i](window.Bokeh);
+        }if (force === true) {
+          display_loaded();
+        }} else if (Date.now() < window._bokeh_timeout) {
+        setTimeout(run_inline_js, 100);
+      } else if (!window._bokeh_failed_load) {
+        console.log("Bokeh: BokehJS failed to load within specified timeout.");
+        window._bokeh_failed_load = true;
+      } else if (force !== true) {
+        var cell = $(document.getElementById("7c4c38f8-5088-402f-bbc5-864e161d387c")).parents('.cell').data().cell;
+        cell.output_area.append_execute_result(NB_LOAD_WARNING)
+      }
+  
+    }
+  
+    if (window._bokeh_is_loading === 0) {
+      console.log("Bokeh: BokehJS loaded, going straight to plotting");
+      run_inline_js();
+    } else {
+      load_libs(js_urls, function() {
+        console.log("Bokeh: BokehJS plotting callback run at", now());
+        run_inline_js();
+      });
+    }
+  }(this));
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<p><code>&lt;Bokeh Notebook handle for <strong>In[30]</strong>&gt;</code></p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">update_m</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">47</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;function __main__.update_m&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><a class="u-url" href="/blog/2020/01/28/Interactive-Bubble-Plot.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
